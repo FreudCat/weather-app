@@ -1,0 +1,81 @@
+body {
+  height: 100vh; 
+  background-image: linear-gradient(rgb(255, 166, 166), rgb(248, 221, 221));
+}
+
+@media only screen and (max-width: 450px) {
+
+#container {
+  display: grid; 
+  width: 90vw; 
+  margin: auto; 
+  height: auto; 
+  grid-template-columns: 80vw;
+  grid-template-rows: 20vh, 60vh, auto;
+  grid-template-areas: 
+  "header"
+  "input" 
+  "output";
+  justify-content: center;
+}
+
+#header-form-holder {
+  background-color: black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 5px 10px 20px grey;
+}
+
+#header {
+  grid-area: header;  
+  color:  rgb(248, 228, 228);
+  font-size: 0.8em; 
+}
+
+.user-input {
+  position: relative;
+  padding: 10px 0 0 0;
+  font-size: 0.8em;
+  color: #fff;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #fff; 
+}
+
+.no-focus {
+  background: transparent;
+  border: none;
+  color:#fff;
+}
+
+.no-focus:focus {  /*removing the border when the input areas are in focus*/
+  outline: none; 
+}
+
+#form {
+  grid-area: input;
+  display: flex; 
+  flex-direction: column;
+  color: white; 
+  width: 90%; 
+  justify-content: center
+}
+
+#section { 
+  grid-area: output; 
+  background: url(multimedia/fog.jpg);
+  height: 40vh;  
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow:  5px 10px 20px grey;
+}
+
+.center-text {
+  text-align: center;
+}
+}
+
+
+
+
+
+/*Image by jplenio from Pixabay*/
