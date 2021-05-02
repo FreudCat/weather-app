@@ -22,15 +22,15 @@
           <input type="text" id="zip" class="no-focus" placeholder="enter zip code here">
         </div>
         <div class="user-input">
-          <input class="myInput no-focus" id="feelings" placeholder="How are you feeling today?"></input>
+          <textarea class="no-focus" id="feelings" placeholder="How are you feeling today?" rows="1" cols="50"></textarea>
         </div>
-        <button id="post-info-btn" type="submit"> Get Weather </button>
+        <button id="generate" type="submit"> Get Weather </button>
       </form>
     </div>
 
     <section id="section">
       <h3 class="center-text">Most Recent Data</h3>
-      <div id="content-holder">
+      <div id="entryHolder">
         <p id="date" class="output-style"></p>
         <p id="temp" class="output-style"></p>
         <p id="content" class="output-style"></p>

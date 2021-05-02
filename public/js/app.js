@@ -1,10 +1,10 @@
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=" //have to have the https:// in front of the url else it will append to the current local host and give you an error. 
-let apiKey;
+const apiKey = ""; //not included for security reasons 
 
 let d = new Date()//gets current date and time 
 let newDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
 
-const postBtn = document.getElementById("post-info-btn");
+const postBtn = document.getElementById("generate");
 
 //variables used to hold user input and weather data 
 let zipcode = document.getElementById("zip");
@@ -18,7 +18,7 @@ const dateDiv = document.getElementById("date");
 const tempDiv = document.getElementById("temp");
 const contentDiv = document.getElementById("content");
 const zipDiv = document.getElementById("user-zip"); 
-const contentHolder = document.getElementById("content-holder"); 
+const contentHolder = document.getElementById("entryHolder"); 
 
 postBtn.addEventListener("click", function (e) {
   e.preventDefault();
