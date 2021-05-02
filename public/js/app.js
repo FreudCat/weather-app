@@ -12,7 +12,10 @@ let zipcode = document.getElementById("zip");
 let feelings = document.getElementById("feelings");
 let content = document.getElementById("content");
 let temp = document.getElementById("temp");
-
+const dateDiv = document.getElementById("date");
+const tempDiv = document.getElementById("temp");
+const contentDiv = document.getElementById("content");
+const zipDiv = document.getElementById("userZip"); 
 
 postBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -27,7 +30,10 @@ postBtn.addEventListener("click", function (e) {
           temp: data.main.temp,
           userFeelings: feelings.value
         }) //this function will post data that we got from web api query. Takes a URL and an object (web api data). There should also be a POST on the server side with the same url/route. 
-    });
+    })
+    .then(function () {
+      showData();  // now we will GET the data that was posted and use it to update the DOM. 
+    }); 
 });
 
 const getWeather = async (baseURL, zipcode, apiKey) => { //Query a web API - pass base open weather url, zipcode from input, and apikey to openweather to get the information. Use async to let the function know we are going to write asynchronous code 
@@ -45,7 +51,7 @@ const getWeather = async (baseURL, zipcode, apiKey) => { //Query a web API - pas
 }
 
 const postData = async (url, data) => {
-  const response = await fetch(url, {  // usual data needed for post 
+  const response = await fetch(url, {  // the following is the usual data needed for a post 
     method: "POST",
     credentials: "same-origin",
     headers: {
@@ -61,4 +67,19 @@ const postData = async (url, data) => {
     console.log("error", err);
   }
 }
+
+const showData = async () => { //Data has already been posted, now it needs to be retrieve to update the DOM
+  try {
+    let fetchApiInfo = await fetch("/userEntry"); //this corresponds with a GET request on the server-side. Note the fetch and GET needs to use the same url. 
+    let finalData = await fetchApiInfo.json();
+    console.log(finalData); 
+    zipDiv.innerHTML = finalData.zip; 
+    dateDiv.innerHTML = finalData.date;  
+    tempDiv.innerHTML = finalData.temp; 
+    contentDiv.innerHTML = finalData.feelings; 
+  } catch (err) {
+    console.log("error", err); 
+  }
+}
+
 

@@ -23,18 +23,19 @@ app.listen(port, () => { //starts the server
   console.log(`Example log is listening ${port}`); 
 }); 
 
-app.get('/userEntry', (req, res) => {
-  res.send(JSON.stringify(projectData)); 
-});
-
 app.post("/weatherData", (req, res) => { //url needs to match the url in the app.js page. 
   let data = req.body; //request, and req.body gets information from the body? 
   let newEntry = {
     date: data.date, 
+    zip: data.zip, 
     temp: data.temp, 
-    feelings: data.feelings // collects the specific info from the data from the req.body; 
+    feelings: data.userFeelings // collects the specific info from the data from the req.body; 
   }
   console.log(req.body); 
   projectData = newEntry; //adds the new info into the projectData object
 }); 
+
+app.get('/userEntry', (req, res) => { //GETS the object data that was previously posted and sends it back to the client-side via a reponse. 
+  res.send(JSON.stringify(projectData)); 
+});
 
