@@ -11,6 +11,7 @@ let zipcode = document.getElementById("zip");
 let feelings = document.getElementById("feelings");
 let content = document.getElementById("content");
 let temp = document.getElementById("temp");
+let inputErr = document.getElementById("errorDiv"); 
 
 //variables used to update the DOM
 const dateDiv = document.getElementById("date");
@@ -19,8 +20,9 @@ const contentDiv = document.getElementById("content");
 const zipDiv = document.getElementById("user-zip"); 
 
 postBtn.addEventListener("click", function (e) {
-  if (zipcode.value && feelings.value) {
   e.preventDefault();
+  inputErr.innerHTML = ""; 
+  if (zipcode.value && feelings.value) {
   console.log(zipcode.value);
   console.log(feelings.value);
   getWeather(baseURL, zipcode, apiKey)
@@ -37,7 +39,7 @@ postBtn.addEventListener("click", function (e) {
       showData();  // chaining another promise to GET the data that was posted and use it to update the DOM. 
     }); 
   } else {
-
+    inputErr.innerHTML = "Please enter information for both requests"; 
   }
 });
 
@@ -87,4 +89,6 @@ const showData = async () => { //Data has already been posted, now it needs to b
   }
 }
 
+//TODO add time 
+//TODO add error info re lack of user input 
 
