@@ -66,11 +66,14 @@ h4 {
 
 #section { 
   grid-area: output; 
+  display: flex; 
+  flex-direction: column;
   background: url(multimedia/fog.jpg);
   height: 40vh;  
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   box-shadow:  5px 10px 20px grey;
+  align-items: center;
 }
 
 #errorDiv {
@@ -88,6 +91,13 @@ h4 {
     border: 2px rgb(248, 228, 228) solid; 
     border-radius: 5px; 
     color: rgb(248, 228, 228); 
+  }
+
+  .content-holder-bkgrnd {
+    height: 55%; 
+    width: 50%; 
+    background-color: rgb(255, 255, 255, 50%);
+    border-radius: 5px;
   }
 
 }
