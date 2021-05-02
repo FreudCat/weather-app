@@ -3,6 +3,14 @@ body {
   background-image: linear-gradient(rgb(255, 166, 166), rgb(248, 221, 221));
 }
 
+h1, 
+h2, 
+h3, 
+h4, 
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 h4 {
   margin-bottom: 10px; 
 }
@@ -95,13 +103,122 @@ h4 {
 
   .content-holder-bkgrnd {
     height: 55%; 
-    width: 50%; 
-    background-color: rgb(255, 255, 255, 50%);
+    width: 75%; 
+    background-color: rgb(255, 255, 255, 75%);
     border-radius: 5px;
+  }
+
+  .output-style {
+    font: 0.8em; 
+    padding-left: 15px; 
+    margin-top: 5px;   
   }
 
 }
 
+
+@media only screen and (min-width: 451px) {
+
+  #container {
+    display: grid; 
+    margin: auto; 
+    height: auto; 
+    grid-template-columns: 40vw;
+    grid-template-rows: 20vh, 70vh, auto;
+    grid-template-areas: 
+    "header"
+    "input" 
+    "output";
+    justify-content: center;
+  }
+  
+  #header-form-holder {
+    background-color: black;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 5px 10px 20px grey;
+  }
+  
+  #header {
+    grid-area: header;  
+    color:  rgb(248, 228, 228);
+    font-size: 0.8em; 
+  }
+  
+  .user-input {
+    position: relative;
+    font-size: 0.8em;
+    color: #fff;
+    margin: 0 10px 30px;
+    border-bottom: 1px solid #fff; 
+    width: 50%; 
+  }
+  
+  .no-focus {
+    background: transparent;
+    border: none;
+    color:#fff;
+  }
+  
+  .no-focus:focus {  /*removing the border when the input areas are in focus*/
+    outline: none; 
+  }
+  
+  #form {
+    grid-area: input;
+    display: flex; 
+    flex-direction: column;
+    color: white; 
+    align-items: center;
+    width: 100%; 
+    height: 40vh;
+  }
+  
+  #section { 
+    grid-area: output; 
+    display: flex; 
+    flex-direction: column;
+    background: url(multimedia/fog.jpg);
+    height: 40vh;  
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow:  5px 10px 20px grey;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  #errorDiv {
+    color: rgb(248, 144, 144);
+    margin-bottom: 20px; 
+  }
+  
+  .center-text {
+    text-align: center;
+  }
+  
+    button {
+      margin-bottom: 10px;     
+      background-color: transparent; 
+      border: 2px rgb(248, 228, 228) solid; 
+      border-radius: 5px; 
+      color: rgb(248, 228, 228); 
+    }
+  
+    .content-holder-bkgrnd {
+      height: 55%; 
+      width: 50%; 
+      background-color: rgb(255, 255, 255, 70%);
+      border-radius: 5px;
+    }
+  
+    .output-style {
+      font: 0.8em;
+      padding-left: 15px; 
+      margin-top: 5px;   
+    }
+  }
+  
 
 
 

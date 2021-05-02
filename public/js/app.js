@@ -1,5 +1,5 @@
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=" //have to have the https:// in front of the url else it will append to the current local host and give you an error. 
-let apiKey ;
+let apiKey;
 
 let d = new Date()//gets current date and time 
 let newDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
@@ -83,7 +83,7 @@ const showData = async () => { //Data has already been posted, now it needs to b
     console.log(finalData); 
     contentHolder.classList.add("content-holder-bkgrnd"); 
     dateDiv.innerHTML = `Today's Date: ${finalData.date}`;
-    tempDiv.innerHTML = `Current Temp: ${finalData.temp}`; 
+    tempDiv.innerHTML = `Current Temp: ${Math.round(finalData.temp)}&degF`; 
     contentDiv.innerHTML = `You are feeling ${finalData.feelings}`; 
   } catch (err) {
     console.log("error", err); 
