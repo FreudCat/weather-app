@@ -27,7 +27,7 @@ app.get('/userEntry', (req, res) => {
   res.send(JSON.stringify(projectData)); 
 });
 
-app.post("/userEntry", (req, res) => { //url needs to match the url in the app.js page. 
+app.post("/weatherData", (req, res) => { //url needs to match the url in the app.js page. 
   let data = req.body; //request, and req.body gets information from the body? 
   let newEntry = {
     date: data.date, 
