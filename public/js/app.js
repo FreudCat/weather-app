@@ -22,21 +22,21 @@ const contentDiv = document.getElementById("content");
 const zipDiv = document.getElementById("user-zip"); 
 const contentHolder = document.getElementById("entryHolder"); 
 
-postBtn.addEventListener("click", function (e) {
-  e.preventDefault();
+postBtn.addEventListener("click", function (e) {  //this is where it all starts. 
+  e.preventDefault(); 
   inputErr.innerHTML = ""; 
-  if (zipcode.value && feelings.value) {
+  if (zipcode.value && feelings.value) {  //default validation via adding "required" to the html doesn't work if you use preventDefault() function. This if-else validates the form to ensure users filled out both areas.
   console.log(zipcode.value);
   console.log(feelings.value);
-  getWeather(baseURL, zipcode, apiKey)
+  getWeather(baseURL, zipcode, apiKey) //once button is pushed, it will run an API web query to gather data
     .then(function (data) { //chaining a promise to do something with the data that was taken from the Web API. 
-      postData("/weatherData",
+      postData("/weatherData", //this function will post data that we got from web api query. Takes a URL or route and an object (web api data in this case). There should also be a corresponding POST on the server side with the same url/route. 
         {
           date: newDate,
           zip: zipcode.value,
           temp: data.main.temp,
           userFeelings: feelings.value
-        }) //this function will post data that we got from web api query. Takes a URL and an object (web api data). There should also be a POST on the server side with the same url/route. 
+        }) 
     })
     .then(function () {
       showData();  // chaining another promise to GET the data that was posted and use it to update the DOM. 
@@ -46,13 +46,13 @@ postBtn.addEventListener("click", function (e) {
   }
 });
 
-const getWeather = async (baseURL, zipcode, apiKey) => { //Query a web API - pass base open weather url, zipcode from input, and apikey to openweather to get the information. Use async to let the function know we are going to write asynchronous code 
+const getWeather = async (baseURL, zipcode, apiKey) => { //Query a web API - pass baseURL for openweather, zipcode from input, and apikey to openweather to get the information. Use async to let the function know we are going to write asynchronous code 
   let url = `${baseURL}${zipcode.value}${apiKey}`; //strings all elements together to make actual url 
   console.log(url);
-  console.log("getweather initiated");
+  console.log("getweather running");
   try {
     const weatherInfo = await fetch(url); //a Promise that returns an object within "weatherInfo". "await" pauses code until data is obtained. Fetch often used w/ await. 
-    const data = await weatherInfo.json();  //extract json body contect from the object, await used here, too. 
+    const data = await weatherInfo.json();  //extract json body content from the object, await used here, too. 
     console.log("get weather function data: " + JSON.stringify(data)); //stringify turns it into readable text w/ attribute value pair 
     return data; //the promise resolves and returns the information contained within data 
   } catch (err) {
@@ -61,7 +61,7 @@ const getWeather = async (baseURL, zipcode, apiKey) => { //Query a web API - pas
 }
 
 const postData = async (url, data) => {
-  const response = await fetch(url, {  // the following is the usual data needed for a post 
+  const response = await fetch(url, {  // the following is the usual data needed for a post, sends info to the server side as information in the "body"
     method: "POST",
     credentials: "same-origin",
     headers: {
