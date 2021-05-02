@@ -17,12 +17,12 @@
       </header>
       <form id="form">
         <p id="errorDiv" class="center-text"></p>
-        <!--Will hold error message for users, if needed-->
-        <div class="user-input">
-          <input type="text" id="zip" class="no-focus" placeholder="enter zip code here">
+        <div class="user-input"> <!--Will hold error message for users, if needed-->
+          <input type="text" id="zip" class="no-focus" placeholder="Enter five digit zip here">
         </div>
         <div class="user-input">
-          <textarea class="no-focus" id="feelings" placeholder="How are you feeling today?" rows="1" cols="50"></textarea>
+          <textarea class="no-focus" id="feelings" placeholder="How are you feeling today?" rows="1"
+            cols="50"></textarea>
         </div>
         <button id="generate" type="submit"> Get Weather </button>
       </form>
@@ -31,11 +31,12 @@
     <section id="section">
       <h3 class="center-text">Most Recent Data</h3>
       <div id="entryHolder">
-        <p id="date" class="output-style"></p>
-        <p id="temp" class="output-style"></p>
-        <p id="content" class="output-style"></p>
+        <p id="date" class="output-style center-text"></p> 
+        <p id="temp" class="output-style output-font"></p>
+        <p id="content" class="output-style output-font"></p>
       </div>
     </section>
+
   </div>
   <script src="js/app.js" type="text/javascript"></script>
 </body>

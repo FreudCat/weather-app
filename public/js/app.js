@@ -1,8 +1,10 @@
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=" //have to have the https:// in front of the url else it will append to the current local host and give you an error. 
-const apiKey = ""; //not included for security reasons 
+const apiKey; //not included for security reasons 
 
 let d = new Date()//gets current date and time 
-let newDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+console.log(d);
+let newDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear(); //Note +1 in order to get the actual month. 
+let formattedTime = formatTime(d); 
 
 const postBtn = document.getElementById("generate");
 
@@ -82,14 +84,27 @@ const showData = async () => { //Data has already been posted, now it needs to b
     let finalData = await fetchApiInfo.json();
     console.log(finalData); 
     contentHolder.classList.add("content-holder-bkgrnd"); 
-    dateDiv.innerHTML = `Today's Date: ${finalData.date}`;
+    dateDiv.innerHTML = `${finalData.date} ${formattedTime}`;
     tempDiv.innerHTML = `Current Temp: ${Math.round(finalData.temp)}&degF`; 
-    contentDiv.innerHTML = `You are feeling ${finalData.feelings}`; 
+    contentDiv.innerHTML = `You are feeling ${finalData.feelings}.`; 
   } catch (err) {
     console.log("error", err); 
   }
 }
 
-//TODO add time 
-//TODO add error info re lack of user input 
+function formatTime (d) { //changes time to 12hr format w/ AM/PM
+  let hrs = d.getHours(); 
+  let min = d.getMinutes(); 
+
+  let ampm = hrs < 12 ? "AM" : "PM"; // practicing with ternary operators. If hrs is less than 12, then ampm = "AM", else it equals "PM"
+
+  //changing to 12 hr format if 12 or later. 
+  let moduloHrs = hrs % 12; 
+  hrs = moduloHrs = 0 ? 12 : moduloHrs; //if modulo is 0, then the actual time is between 12 - 1 am, and we set hrs to 12 rather than 0 (as it would be in 24 hr time), else it is just equal to moduloHrs. 
+
+  min = min < 10 ? "0" + min : min; //if minutes are less than 10, getMinutes() doesn't return the leading 0 so 10:07 actually looks like 10:7. This ternary operator adds the leading 0 so that it looks like 10:07. 
+
+  let formattedTime = `${hrs}:${min} ${ampm}`; 
+  return formattedTime; 
+}
 
