@@ -86,7 +86,7 @@ const showData = async () => { //Data has already been posted, now it needs to b
     contentHolder.classList.add("content-holder-bkgrnd"); 
     dateDiv.innerHTML = `${finalData.date} ${formattedTime}`;
     tempDiv.innerHTML = `Current Temp: ${Math.round(finalData.temp)}&degF`; 
-    contentDiv.innerHTML = `You are feeling ${finalData.feelings}.`; 
+    contentDiv.innerHTML = `Current Mood: ${finalData.feelings}`; 
   } catch (err) {
     console.log("error", err); 
   }
