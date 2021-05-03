@@ -1,5 +1,5 @@
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=" //have to have the https:// in front of the url else it will append to the current local host and give you an error. 
-const apiKey; //not included for security reasons 
+const apiKey = "&appid=<enter key here>&units=imperial"; //full API key not included for security reasons. Please replace "<enter key here>" with the personal API key.  
 
 let d = new Date()//gets current date and time 
 console.log(d);
@@ -28,7 +28,7 @@ postBtn.addEventListener("click", function (e) {  //this is where it all starts.
   if (zipcode.value && feelings.value) {  //default validation via adding "required" to the html doesn't work if you use preventDefault() function. This if-else validates the form to ensure users filled out both areas.
   console.log(zipcode.value);
   console.log(feelings.value);
-  getWeather(baseURL, zipcode, apiKey) //once button is pushed, it will run an API web query to gather data
+  getWeather(baseURL, zipcode, apiKey) //once button is pushed, it will run this function to query a website to gather data
     .then(function (data) { //chaining a promise to do something with the data that was taken from the Web API. 
       postData("/weatherData", //this function will post data that we got from web api query. Takes a URL or route and an object (web api data in this case). There should also be a corresponding POST on the server side with the same url/route. 
         {
@@ -78,7 +78,7 @@ const postData = async (url, data) => {
   }
 }
 
-const showData = async () => { //Data has already been posted, now it needs to be retrieved to update the DOM
+const showData = async () => { //Data has already been posted via the postData function. This function retrieves the data to update it into the DOM
   try {
     let fetchApiInfo = await fetch("/userEntry"); //this corresponds with a GET request on the server-side. Note the fetch and GET needs to use the same url. 
     let finalData = await fetchApiInfo.json();
